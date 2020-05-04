@@ -56,6 +56,7 @@ void CMyString::Release()
 	if (nullptr != m_pszData)
 		delete[] m_pszData;
 
+
 	m_pszData = nullptr;
 	m_iLength = 0;
 }

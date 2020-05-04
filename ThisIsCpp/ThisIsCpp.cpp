@@ -3,20 +3,24 @@
 
 #include "stdafx.h"
 #include "MyString.h"
+#include "MyData.h"
 
-void TestFunc(const CMyString& rParam)
+void TestFunc(CMyData cData)
 {
-	cout << rParam.GetString() << endl;
+	cout << cData.GetData() << endl;
 }
 
+CMyData& Test()
+{
+	CMyData B(88);
+	return B;
+}
 
 int main()
 {
-	CMyString pCMyString;
-
-	pCMyString.SetString("Knock.. Knock..");
+	CMyData cA(77);
 	
-	TestFunc(pCMyString);
+	cout << Test().GetData() << endl;
 
     return 0;
 }

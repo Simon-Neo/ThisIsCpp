@@ -20,6 +20,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="02.MyData">
+      <UniqueIdentifier>{e3740068-ff7c-4ce7-aa02-b4b0074acc2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyString.h">
@@ -31,6 +34,8 @@
     <ClInclude Include="targetver.h">
       <Filter>99.Default\H</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="MyData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThisIsCpp.cpp" />
@@ -40,10 +45,16 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>99.Default\CPP</Filter>
     </ClCompile>
+    <ClCompile Include="MyData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt">
       <Filter>99.Default\REST</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ThisIsCpp.rc">
+      <Filter>99.Default\REST\리소스 파일</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

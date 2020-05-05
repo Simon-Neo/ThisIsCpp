@@ -34,8 +34,12 @@
     <ClInclude Include="targetver.h">
       <Filter>99.Default\H</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="MyData.h" />
+    <ClInclude Include="MyData.h">
+      <Filter>02.MyData</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>99.Default\REST</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThisIsCpp.cpp" />
@@ -45,7 +49,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>99.Default\CPP</Filter>
     </ClCompile>
-    <ClCompile Include="MyData.cpp" />
+    <ClCompile Include="MyData.cpp">
+      <Filter>02.MyData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt">

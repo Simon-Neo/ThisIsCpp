@@ -1,4 +1,3 @@
 ﻿  ThisIsCpp.cpp
-d:\github\thisiscpp\thisiscpp_chapter04\thisiscpp\thisiscpp.cpp(16): warning C4172: 지역 변수 또는 임시: B의 주소를 반환하고 있습니다.
-  ThisIsCpp.vcxproj -> D:\Github\ThisIsCpp\ThisIsCpp_Chapter04\Debug\ThisIsCpp.exe
-  ThisIsCpp.vcxproj -> D:\Github\ThisIsCpp\ThisIsCpp_Chapter04\Debug\ThisIsCpp.pdb (Partial PDB)
+  ThisIsCpp.vcxproj -> D:\Github\CPP\This_Is_Cpp\Chapter04\Debug\ThisIsCpp.exe
+  ThisIsCpp.vcxproj -> D:\Github\CPP\This_Is_Cpp\Chapter04\Debug\ThisIsCpp.pdb (Partial PDB)

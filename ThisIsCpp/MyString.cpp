@@ -3,14 +3,32 @@
 
 
 #define NOT_USE_FUNCTION_MYSTRING
-CMyString::CMyString()
+CMyString::CMyString(const char* pszData)
 {
+	SzHeapAllocation(pszData);
 }
 
 
 CMyString::~CMyString()
 {
 	Release();
+}
+
+CMyString::CMyString(const CMyString & rhs)
+{
+	Release();
+
+	SzHeapAllocation(rhs.m_pszData, rhs.m_iLength);
+}
+
+const CMyString & CMyString::operator=(const CMyString & rhs)
+{
+	if (&rhs != this)
+	{
+		Release();
+		SzHeapAllocation(rhs.m_pszData, rhs.m_iLength);
+	}
+	return *this;
 }
 
 
@@ -38,17 +56,32 @@ int CMyString::SetString(const char * pszParam)
 	m_iLength = iSize;
 	
 #else
-	m_iLength = strlen(pszParam);
-
-	if (m_iLength <= 0)
-		return m_iLength;
-
-	m_pszData = new char[m_iLength + 1];
-
-	strcpy_s(m_pszData, sizeof(pszParam[0]) * (m_iLength + 1), pszParam);
+	SzHeapAllocation(pszParam);
 #endif // NOT_USE_FUNCTION_MYSTRING
 
 	return m_iLength;
+}
+
+void CMyString::SzHeapAllocation(const char * pszData, int iSourLength )
+{
+	if (0 >= iSourLength)
+		m_iLength = strlen(pszData);
+	else
+		m_iLength = iSourLength;
+
+	if (0 >= m_iLength)
+	{
+		cout << "CMyString::SzHeapAllocation() _. Lenght 0" << endl;
+		return;
+	}
+	
+	m_pszData = new char[m_iLength + 1];
+	if (nullptr == m_pszData)
+	{
+		cout << "CMyString::SzHeapAllocation() _. HeapAllocation Fail." << endl;
+		return;
+	}
+	strcpy_s(m_pszData, sizeof(pszData[0]) * (m_iLength + 1), pszData);
 }
 
 void CMyString::Release()

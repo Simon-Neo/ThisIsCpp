@@ -3,6 +3,7 @@
 
 
 #define NOT_USE_FUNCTION_MYSTRING
+
 CMyString::CMyString(const char* pszData)
 {
 	SzHeapAllocation(pszData);

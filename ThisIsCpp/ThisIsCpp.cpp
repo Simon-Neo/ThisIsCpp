@@ -6,20 +6,20 @@
 
 #include "MyString.h"
 
+
+void TestFunc(const CMyString& rMyString)
+{
+	cout << rMyString << endl;
+}
+
 int main()
 {
 	CMyString cA("Kock Knock");
 
-	cout << cA.GetString() << endl;
 
+	TestFunc(cA);
+	TestFunc(CMyString("I will put you right Through"));
 
-	CMyString cB(cA);
-	cout << cB.GetString() << endl;
-
-	CMyString cC;
-
-	cC = cB;
-	cout << cC.GetString() << endl;
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	return 0;
 }

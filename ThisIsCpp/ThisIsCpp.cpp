@@ -2,22 +2,24 @@
 //
 
 #include "stdafx.h"
+#include <crtdbg.h>
+
 #include "MyString.h"
-
-void TestFunc(const CMyString& rParam)
-{
-	cout << rParam.GetString() << endl;
-}
-
 
 int main()
 {
-	CMyString pCMyString;
+	CMyString cA("Kock Knock");
 
-	pCMyString.SetString("Knock.. Knock..");
-	
-	TestFunc(pCMyString);
+	cout << cA.GetString() << endl;
 
-    return 0;
+
+	CMyString cB(cA);
+	cout << cB.GetString() << endl;
+
+	CMyString cC;
+
+	cC = cB;
+	cout << cC.GetString() << endl;
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	return 0;
 }
-

@@ -24,3 +24,17 @@ CMyData::CMyData(CMyData && rrhs)
 	cout << "CMyData::CMyData(CMyData && rrhs)" << m_iNum << endl;
 }
 
+CMyData CMyData::operator+(const CMyData & rhs)
+{
+	cout << "CMyData CMyData::operator+(const CMyData & rhs)" << endl;
+	CMyData cResult(m_iNum + rhs.GetData());
+	return cResult;
+}
+
+CMyData & CMyData::operator=(const CMyData & rhs)
+{
+	cout << "CMyData & CMyData::operator=(const CMyData & rhs)" << endl;
+	m_iNum = rhs.GetData();
+	return *this;
+}
+

@@ -6,6 +6,7 @@
 
 CMyString::CMyString(const char* pszData)
 {
+	cout << "CMyString::CMyString(const char* pszData)" << endl;
 	SzHeapAllocation(pszData);
 }
 
@@ -17,13 +18,23 @@ CMyString::~CMyString()
 
 CMyString::CMyString(const CMyString & rhs)
 {
+	cout << "CMyString::CMyString(const CMyString & rhs)" << endl;
 	Release();
 
 	SzHeapAllocation(rhs.m_pszData, rhs.m_iLength);
 }
 
+CMyString::CMyString(CMyString && rrhs)
+	:m_pszData(rrhs.m_pszData), m_iLength(rrhs.m_iLength)
+{
+	cout << "CMyString::CMyString(const CMyString && rrhs -> MoveGenerator!)" << endl;
+	rrhs.m_pszData = nullptr;
+	rrhs.m_iLength = 0;
+}
+
 const CMyString & CMyString::operator=(const CMyString & rhs)
 {
+	cout << "const CMyString & CMyString::operator=(const CMyString & rhs)" << endl;
 	if (&rhs != this)
 	{
 		Release();
@@ -32,6 +43,45 @@ const CMyString & CMyString::operator=(const CMyString & rhs)
 	return *this;
 }
 
+
+CMyString CMyString::operator+(const CMyString & rhs)
+{
+	CMyString strResult(m_pszData);
+	strResult.Append(rhs.GetString());
+
+	return strResult;
+}
+
+CMyString & CMyString::operator+=(const CMyString & rhs)
+{
+	if (nullptr != rhs)
+		Append(rhs.GetString());
+	return *this;
+}
+
+const char & CMyString::operator[](int iIndex) const
+{
+	if (0 > iIndex || m_iLength <= iIndex)
+	{
+		cout << "Out Of Rnage Index _. CMyString::operator[](int iIndex)" << endl;
+		return m_pszData[0];
+	}
+
+	return m_pszData[iIndex];
+}
+
+int CMyString::operator==(const CMyString & rhs)
+{
+	if (nullptr != m_pszData && nullptr != rhs.m_pszData)
+		if (0 == strcmp(m_pszData, rhs.m_pszData))
+			return 1;
+	return 0;
+}
+
+int CMyString::operator!=(const CMyString & rhs)
+{
+	return !(operator==(rhs));
+}
 
 int CMyString::SetString(const char * pszParam)
 {
@@ -51,7 +101,7 @@ int CMyString::SetString(const char * pszParam)
 
 	m_pszData = new char[iSize + 1];
 
-	for (int i = 0; i < iSize + 1; ++i)
+	for (int i = 0; i <= iSize + 1; ++i)
 		m_pszData[i] = pszParam[i];
 
 	m_iLength = iSize;
@@ -59,6 +109,53 @@ int CMyString::SetString(const char * pszParam)
 #else
 	SzHeapAllocation(pszParam);
 #endif // NOT_USE_FUNCTION_MYSTRING
+
+	return m_iLength;
+}
+
+int CMyString::Append(const char * pszParam)
+{
+	if (nullptr == pszParam)
+	{
+		cout << " CMyString::Append _. 	if (nullptr == pszParam)" << endl;
+		return 0;
+	}
+
+	int iParamLength = strlen(pszParam);
+	if (iParamLength <= 0)
+	{
+		cout << " CMyString::Append _. 	strlen(pszParam) <= 0" << endl;
+		return 0;
+	}
+
+	if (nullptr == m_pszData || 0 >= m_iLength)
+	{
+		Release();
+		SzHeapAllocation(pszParam, strlen(pszParam));
+		return m_iLength;
+	}
+
+	int iNewLength = m_iLength + iParamLength;
+	char* pszNewData = new char[iNewLength + 1];
+
+	if(nullptr == pszNewData)
+	{
+		cout << "CMyString::Append _.  Memory Allocation Fail _. nullptr == pszNewData" << endl;
+		return 0;
+	}
+	memset(pszNewData, 0, sizeof(char) * (iNewLength + 1));
+
+	int i = 0;
+	while (m_pszData[i] != '\0')
+		pszNewData[i++] = m_pszData[i];
+	int j = 0;
+	while (pszParam[j] != '\0')
+		pszNewData[i++] = pszParam[j++];
+	pszNewData[i] = '\0';
+
+	Release();
+	m_pszData = pszNewData;
+	m_iLength = iNewLength;
 
 	return m_iLength;
 }

@@ -7,18 +7,28 @@
 #include "MyString.h"
 
 
-void TestFunc(const CMyString& rMyString)
+void TestFunc(const CMyString & strParam)
 {
-	cout << rMyString << endl;
+	cout << strParam[0] << endl;
+	cout << strParam[strParam.GetLength() - 1] << endl;
 }
 
 int main()
 {
-	CMyString cA("Kock Knock");
+	CMyString strLeft("Test"), strRight("String");
+
+	if (strLeft == strRight)
+		cout << "Same" << endl;
+	else
+		cout << "Different" << endl;
+
+	strLeft = CMyString("String");
 
 
-	TestFunc(cA);
-	TestFunc(CMyString("I will put you right Through"));
+	if (strLeft != strRight)
+		cout << "Different" << endl;
+	else
+		cout << "Same" << endl;
 
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	return 0;

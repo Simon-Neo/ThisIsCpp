@@ -8,27 +8,22 @@
 #include "MyData.h"
 
 
-CMyData TestFunc(int iParam)
+void TestFunc(const CMyData& rData)
 {
-	CMyData cA(iParam, "A");
-	return cA; 
+	cout << rData[3] << endl;
 }
 
 int main()
 {
-	CMyData cB(77, "B");
+	int iArraySize = 5;
+	CMyData cData(iArraySize);
 
-	cout << "Begin" << endl;
+	for (int i = 0; i < iArraySize; ++i)
+		cData[i] = i * 10;
 
+	cData.Render();
 
-	CMyData& rData = TestFunc(11);
-
-	cB = rData;
-
-	cout << "End" << endl;
-
-	cout << cB.GetData() << endl;
-	
+	TestFunc(cData);
 
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     return 0;

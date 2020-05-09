@@ -1,3 +1,5 @@
 ﻿  ThisIsCpp.cpp
-  ThisIsCpp.vcxproj -> D:\Github\CPP\This_Is_Cpp\Chapter04\Debug\ThisIsCpp.exe
-  ThisIsCpp.vcxproj -> D:\Github\CPP\This_Is_Cpp\Chapter04\Debug\ThisIsCpp.pdb (Partial PDB)
+  MyData.cpp
+d:\github\cpp\this_is_cpp\chapter05\thisiscpp\mydata.cpp(26): error C2561: 'CMyData::operator []': 함수는 값을 반환해야 합니다.
+  d:\github\cpp\this_is_cpp\chapter05\thisiscpp\mydata.cpp(20): note: 'CMyData::operator []' 선언을 참조하십시오.
+  코드를 생성하고 있습니다...

@@ -1,40 +1,77 @@
 #include "stdafx.h"
 #include "MyData.h"
 
+
+
 CMyData::CMyData(int iNum)
-	:m_iNum(iNum)
+	:m_iSize(iNum)
 {
-	cout << "CMyData::CMyData(int iNum)" << m_iNum << endl;
+	m_piData = new int[iNum];
+	memset(m_piData, 0, sizeof(m_piData[0] * iNum));
+	cout << "CMyData(int iNum)" << (*m_piData) << endl;
 }
 
 CMyData::~CMyData()
 {
-	cout << "CMyData::~CMyData()" << m_iNum <<  endl;
+	cout << "~CMyData()" << endl;
+	Release();
 }
 
-CMyData::CMyData(const CMyData & rhs)
-	:m_iNum(rhs.m_iNum)
+int& CMyData::operator[](int iIndex)
 {
-	cout << "CMyData::CMyData(const CMyData & rhs)" << endl;
+	int* pBeckUp = nullptr;
+	if (0 < iIndex)
+	{
+		cout << "Out Of Range" << endl;
+		return m_piData[0];
+	}
+	else if (m_iSize <= iIndex)
+	{
+
+		pBeckUp = new int[iIndex];
+		memset(pBeckUp, 0, sizeof(pBeckUp[0] * iIndex));
+		memcpy(pBeckUp, m_piData, sizeof(m_piData[0]) * m_iSize);
+		Release();
+
+		m_piData = pBeckUp;
+		pBeckUp = nullptr;
+
+		m_iSize = iIndex;
+	}
+
+	cout << "operator[](int iIndex)" << endl;
+	return m_piData[iIndex];
+
 }
 
-CMyData::CMyData(CMyData && rrhs)
-	:m_iNum(rrhs.m_iNum)
+const int & CMyData::operator[](int iIndex) const
 {
-	cout << "CMyData::CMyData(CMyData && rrhs)" << m_iNum << endl;
+
+	if (0 < iIndex)
+	{
+		cout << "Out Of Range" << endl;
+		return -1;
+	}
+
+	cout << "operator[](int iIndex) const" << endl;
+	return m_piData[iIndex];
 }
 
-CMyData CMyData::operator+(const CMyData & rhs)
+void CMyData::Render()
 {
-	cout << "CMyData CMyData::operator+(const CMyData & rhs)" << endl;
-	CMyData cResult(m_iNum + rhs.GetData());
-	return cResult;
+	if (m_piData == nullptr)
+		return;
+	
+	for (int i = 0; i < m_iSize; ++i)
+		cout << m_piData[i] << " ";
+	cout << endl;
 }
 
-CMyData & CMyData::operator=(const CMyData & rhs)
+void CMyData::Release()
 {
-	cout << "CMyData & CMyData::operator=(const CMyData & rhs)" << endl;
-	m_iNum = rhs.GetData();
-	return *this;
+	if (nullptr != m_piData)
+		delete[] m_piData;
+	m_piData = nullptr;
+	m_iSize = 0;
+	
 }
-

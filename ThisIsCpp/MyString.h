@@ -12,12 +12,12 @@ public:
 	CMyString& operator+=(const CMyString& rhs);
 
 	const CMyString& operator=(const CMyString& rhs);
+	CMyString& operator=(CMyString&& rrhs);
 
-	operator const char* (void) const { return m_pszData; }
+	operator const char* (void) const;
 	const char& operator[](int iIndex) const;
 	int operator==(const CMyString& rhs);
 	int operator!=(const CMyString& rhs);
-
 public:
 	int SetString(const char* pszParam);
 	int SetString(int) = delete;

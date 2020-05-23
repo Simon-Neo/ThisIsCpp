@@ -22,13 +22,12 @@ int main()
 	else
 		cout << "Different" << endl;
 
-	strLeft = CMyString("String");
+	cout << "= + " << endl;
+	CMyString strResult;
+	strResult = strLeft + strRight;
 
-
-	if (strLeft != strRight)
-		cout << "Different" << endl;
-	else
-		cout << "Same" << endl;
+	cout << "REsult = " << strResult << endl;
+	cout << strResult[0] << endl;
 
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	return 0;

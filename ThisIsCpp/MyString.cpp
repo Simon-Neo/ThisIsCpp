@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "MyString.h"
 
-
 #define NOT_USE_FUNCTION_MYSTRING
 
 CMyString::CMyString(const char* pszData)
@@ -9,7 +8,6 @@ CMyString::CMyString(const char* pszData)
 	cout << "CMyString::CMyString(const char* pszData)" << endl;
 	SzHeapAllocation(pszData);
 }
-
 
 CMyString::~CMyString()
 {
@@ -43,6 +41,17 @@ const CMyString & CMyString::operator=(const CMyString & rhs)
 	return *this;
 }
 
+CMyString & CMyString::operator=(CMyString && rrhs)
+{
+	cout << "CMyString & CMyString::operator=(CMyString && rrhs)" << endl;
+	m_pszData = rrhs.m_pszData;
+	m_iLength = rrhs.m_iLength;
+
+	rrhs.m_pszData = nullptr;
+	rrhs.m_iLength = 0;
+
+	return *this;
+}
 
 CMyString CMyString::operator+(const CMyString & rhs)
 {
@@ -59,6 +68,12 @@ CMyString & CMyString::operator+=(const CMyString & rhs)
 	return *this;
 }
 
+CMyString::operator const char*(void) const
+{
+	cout << "	operator const char* (void) cons" << endl;
+	return m_pszData;
+}
+
 const char & CMyString::operator[](int iIndex) const
 {
 	if (0 > iIndex || m_iLength <= iIndex)
@@ -67,7 +82,7 @@ const char & CMyString::operator[](int iIndex) const
 		return m_pszData[0];
 	}
 
-	return m_pszData[iIndex];
+	return m_pszData[iIndex]; 
 }
 
 int CMyString::operator==(const CMyString & rhs)

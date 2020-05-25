@@ -20,6 +20,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="02.MyStringEx">
+      <UniqueIdentifier>{f41e2969-4239-4a7b-bbcf-2b87a805fa49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyString.h">
@@ -31,6 +34,9 @@
     <ClInclude Include="targetver.h">
       <Filter>99.Default\H</Filter>
     </ClInclude>
+    <ClInclude Include="MyStringEx.h">
+      <Filter>02.MyStringEx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThisIsCpp.cpp" />
@@ -39,6 +45,9 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>99.Default\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStringEx.cpp">
+      <Filter>02.MyStringEx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

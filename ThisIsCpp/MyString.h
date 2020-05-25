@@ -13,7 +13,7 @@ public:
 
 	const CMyString& operator=(const CMyString& rhs);
 	CMyString& operator=(CMyString&& rrhs);
-
+	
 	operator const char* (void) const;
 	const char& operator[](int iIndex) const;
 	int operator==(const CMyString& rhs);

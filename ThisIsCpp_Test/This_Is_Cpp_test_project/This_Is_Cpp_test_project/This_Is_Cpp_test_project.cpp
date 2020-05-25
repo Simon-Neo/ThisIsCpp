@@ -4,9 +4,16 @@
 #include "stdafx.h"
 
 
+#include "MyDataEx.h"
+
 int main()
 {
-	cout << "Test" << endl;
+	CMyDataEx cData;
+
+	cData.SetData(77);
+	cout << cData.GetData() << endl;
+	
+	cData.TestFunc();
     return 0;
 }
 
